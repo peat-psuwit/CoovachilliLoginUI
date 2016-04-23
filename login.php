@@ -105,7 +105,8 @@ function handleWISPrLogin() {
 
 	if (isset($_REQUEST['WISPrEAPMsg'])) {
 		if ($WISPrVersion != '2.0' || isset($_REQUEST['Password'])) {
-			redirect($config['UAM_UI_URL'] . '/WISPrError.php?code=254');
+			$errorCode = "254";
+			goToFile("./WISPrError.php");
 		}
 		else {
 			redirect($config['UAM_URL'] .
