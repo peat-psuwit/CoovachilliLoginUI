@@ -1,4 +1,5 @@
 <?php
+  global $errorCode;
   if ($errorCode == 'invalidReq') {
     $error = "The request was incomplete."; //Customisable
   }

@@ -1,3 +1,4 @@
+<?php global $chal, $userurl, $errMsg; ?>
 <html>
   <head>
     <title>My hotspot</title>

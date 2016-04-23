@@ -1,3 +1,4 @@
+<?php global $url; ?>
 <html>
   <head>
     <title>Success!</title>
