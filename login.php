@@ -50,7 +50,8 @@ function handleUsernamePasswordLogin() {
 	global $config;
 
   if (!isset($_REQUEST['UserName']) || !isset($_REQUEST['Password'])) {
-		$GLOBALS['errorCode'] = 'invalidReq';
+		global $errorCode;
+    $errorCode = 'invalidReq';
 		goToFile("./error.php");
   }
   else if (!isset($_REQUEST['challenge'])) {
@@ -106,7 +107,8 @@ function handleWISPrLogin() {
 
 	if (isset($_REQUEST['WISPrEAPMsg'])) {
 		if ($WISPrVersion != '2.0' || isset($_REQUEST['Password'])) {
-			$GLOBALS['errorCode'] = "254";
+			global $errorCode;
+			$errorCode = "254";
 			goToFile("./WISPrError.php");
 		}
 		else {
@@ -127,6 +129,7 @@ function validateReqest() {
 
 function redirectToTarget() {
 	global $config;
+	global $url;
 
 	if (isset($_REQUEST['redirurl'])) {
 		$url = $_REQUEST['redirurl'];
@@ -135,25 +138,25 @@ function redirectToTarget() {
 		$url = $_REQUEST['userurl'];
 	}
 
-	$GLOBALS['url'] = htmlspecialchars($url);
+	$url = htmlspecialchars($url);
 	goToFile("./redirect.php");
 }
 
 function redirectToLoginPage() {
 	global $config;
+	global $chal, $userurl, $errMsg;
 
 	if (!isset($_REQUEST['challenge'])) {
 		redirect($config['UAM_URL'] . '/prelogin');
 	}
 
-	$GLOBALS['chal'] = htmlspecialchars($_REQUEST['challenge']);
+	$chal = htmlspecialchars($_REQUEST['challenge']);
 
 	if (isset($_REQUEST['userurl'])) {
 		$userurl = htmlspecialchars($_REQUEST['userurl']);
 	} else {
 		$userurl = '';
 	}
-	$GLOBALS['userurl'] = $userurl;
 
 	if ($_REQUEST['res'] == 'failed') {
 		if (isset($_REQUEST['reply'])) {
@@ -166,7 +169,6 @@ function redirectToLoginPage() {
 	}	else {
 		$errMsg = '';
 	}
-	$GLOBALS['errMsg'] = $errMsg;
 
 	goToFile("./loginForm.php");
 }
