@@ -1,6 +1,3 @@
-<?php
-  $url = htmlspecialchars($_REQUEST['userurl']);
-?>
 <html>
   <head>
     <title>Success!</title>

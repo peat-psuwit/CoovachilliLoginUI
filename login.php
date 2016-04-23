@@ -133,7 +133,8 @@ function redirectToTarget() {
 		$url = $_REQUEST['userurl'];
 	}
 
-	redirect($config['UAM_UI_URL'] . '/redirect.php?userurl=' . urlencode($url));
+	$url = htmlspecialchars($url);
+	goToFile("./redirect.php");
 }
 
 function redirectToLoginPage() {

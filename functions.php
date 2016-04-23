@@ -3,4 +3,9 @@
     header("Location: " . $url);
     exit;
   }
+
+  function goToFile($file) {
+    include $file;
+    exit;
+  }
 ?>
