@@ -1,21 +1,3 @@
-<?php
-  if (!isset($_REQUEST['challenge'])) {
-    redirect($config['UAM_URL'] . '/prelogin');
-  }
-
-  $chal = htmlspecialchars($_REQUEST['challenge']);
-  $userurl = htmlspecialchars($_REQUEST['userurl']);
-
-  if (isset($_REQUEST['errMsg'])) {
-    $errMsg = htmlspecialchars($_REQUEST['errMsg']);
-  }
-  else if ($_REQUEST['wrongPwd'] == '1') {
-    $errMsg = 'Wrong username or password.'; //Customisable text
-  }
-  else {
-    $errMsg = '';
-  }
-?>
 <html>
   <head>
     <title>My hotspot</title>

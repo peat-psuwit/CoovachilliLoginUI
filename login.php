@@ -145,22 +145,28 @@ function redirectToLoginPage() {
 	if (!isset($_REQUEST['challenge'])) {
 		redirect($config['UAM_URL'] . '/prelogin');
 	}
-	$url = $config['UAM_UI_URL'] . '/loginForm.php?challenge=' . urlencode($_REQUEST['challenge']);
+
+	$chal = htmlspecialchars($_REQUEST['challenge']);
 
 	if (isset($_REQUEST['userurl'])) {
-		$url .= '&userurl=' . urlencode($_REQUEST['userurl']);
+		$userurl = htmlspecialchars($_REQUEST['userurl']);
+	} else {
+		$userurl = '';
 	}
 
 	if ($_REQUEST['res'] == 'failed') {
 		if (isset($_REQUEST['reply'])) {
-			$url .= '&errMsg=' . urlencode($_REQUEST['reply']);
+			$errMsg = htmlspecialchars($_REQUEST['reply']);
 		}
 		else {
-			$url .= '&wrongPwd=1';
+			//TODO: use string file, for translation and customization.
+			$errMsg = 'Wrong username or password.';
 		}
+	}	else {
+		$errMsg = '';
 	}
 
-	redirect($url);
+	goToFile("./loginForm.php");
 }
 
 //Handle login
