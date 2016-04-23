@@ -1,7 +1,5 @@
 <?php
-  require_once 'config.php';
-
-  if ($_REQUEST['code'] == 'invalidReq') {
+  if ($errorCode == 'invalidReq') {
     $error = "The request was incomplete."; //Customisable
   }
   else {

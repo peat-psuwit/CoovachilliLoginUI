@@ -50,7 +50,8 @@ function handleUsernamePasswordLogin() {
 	global $config;
 
   if (!isset($_REQUEST['UserName']) || !isset($_REQUEST['Password'])) {
-    redirect($config['UAM_UI_URL'] . '/error.php?code=invalidReq');
+    $errorCode = 'invalidReq';
+		goToFile("./error.php");
   }
   else if (!isset($_REQUEST['challenge'])) {
     redirect($config['UAM_URL'] . '/prelogin');
