@@ -14,6 +14,7 @@
     ?>
     <form action="login.php" method="post">
       <input type="hidden" name="challenge" value="<?php echo $chal; ?>" />
+      <input type="hidden" name="uamurl" value="<?php echo $config['UAM_URL']; ?>" />
       <?php
         if ($userurl != '') {
           echo '<input type="hidden" name="userurl" value="' . $userurl . '" />';
