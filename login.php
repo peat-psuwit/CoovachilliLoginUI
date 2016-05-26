@@ -46,14 +46,6 @@
 require_once 'config.php';
 require_once 'functions.php';
 
-function readUamIPAndPort() {
-	global $config;
-
-	if (isset($_REQUEST['uamip']) && isset($_REQUEST['uamport'])) {
-		$config['UAM_URL']='http://'.$_REQUEST['uamip'].':'.$_REQUEST['uamport'];
-	}
-}
-
 function handleUsernamePasswordLogin() {
 	global $config;
 
@@ -181,7 +173,10 @@ function redirectToLoginPage() {
 	goToFile("./loginForm.php");
 }
 
-readUamIPAndPort();
+//Read uamip and uamport
+if (isset($_REQUEST['uamip']) && isset($_REQUEST['uamport'])) {
+	$config['UAM_URL']='http://'.$_REQUEST['uamip'].':'.$_REQUEST['uamport'];
+}
 
 //Handle login
 if ($_REQUEST['res'] == 'wispr') {
